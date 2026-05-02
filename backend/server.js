@@ -362,12 +362,24 @@ app.delete('/api/saved/:id', protect, async (req, res) => {
   }
 });
 
+const path = require('path');
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', mode: 'production', timestamp: new Date().toISOString() });
 });
 
-app.use((req, res) => res.status(404).json({ error: 'Route not found' }));
+// Serve static files from the React frontend app
+const frontendPath = path.join(__dirname, '../frontend/dist');
+app.use(express.static(frontendPath));
+
+// API 404 handler
+app.use('/api', (req, res) => res.status(404).json({ error: 'Route not found' }));
+
+// After all other routes, send back index.html so React can handle the routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(frontendPath, 'index.html'));
+});
 
 // ═══════════════════════════════════════════════════════════════
 // START SERVER
