@@ -24,7 +24,7 @@ export default function ImagePrompts() {
       const data = await api.generateImagePrompts({ topic: topic.trim(), style });
       setResult(data);
     } catch (err) {
-      setError(err.message || 'Failed to generate prompts');
+      setError(err.error || err.message || 'Failed to generate prompts');
     } finally {
       setLoading(false);
     }
@@ -36,7 +36,7 @@ export default function ImagePrompts() {
       const data = await api.generateImage({ prompt: promptText });
       setGeneratedImages(prev => ({ ...prev, [index]: data.url }));
     } catch (err) {
-      setError(err.message || 'Failed to generate visual');
+      setError(err.error || err.message || 'Failed to generate visual');
     } finally {
       setGeneratingImages(prev => ({ ...prev, [index]: false }));
     }

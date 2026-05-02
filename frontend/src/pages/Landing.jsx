@@ -5,12 +5,12 @@ import { useAuth } from '../context/AuthContext';
 import './Landing.css';
 
 const features = [
-  { icon: '✍️', title: 'AI Caption Generator', desc: 'Generate engaging captions with emojis and optimized hashtags in any tone – funny, professional, viral, or motivational.', color: '#7c3aed' },
-  { icon: '💡', title: 'Content Ideas Engine', desc: 'Never run out of ideas. Get daily post and reel suggestions tailored to your niche with save and bookmark support.', color: '#3b82f6' },
-  { icon: '📊', title: 'Viral Score Predictor', desc: 'Analyze your captions before posting. Get a 0-100 viral score with actionable tips to boost engagement.', color: '#10b981' },
-  { icon: '📈', title: 'Growth Analytics', desc: 'Track engagement, follower growth, and content performance with beautiful interactive charts and insights.', color: '#f59e0b' },
-  { icon: '👤', title: 'Profile Optimizer', desc: 'Transform your Instagram bio into a follower magnet. Get AI-powered bio suggestions and username ideas.', color: '#ec4899' },
-  { icon: '⚡', title: 'Freemium Model', desc: 'Start free with 5 daily AI generations. Upgrade to Premium for unlimited access to all tools and features.', color: '#06b6d4' },
+  { icon: '✍️', title: 'AI Caption Generator', desc: 'Generate engaging captions with emojis and optimized hashtags in any tone.', color: '#7c3aed' },
+  { icon: '🎬', title: 'Reel Script Generator', desc: 'Turn any topic into a 30-60s structured script with visual and audio cues.', color: '#3b82f6' },
+  { icon: '＃', title: 'Hashtag Research', desc: 'Find viral and low-competition hashtags categorized by niche and reach.', color: '#10b981' },
+  { icon: '💡', title: 'Content Ideas Engine', desc: 'Daily post and reel suggestions tailored to your niche with bookmark support.', color: '#f59e0b' },
+  { icon: '📊', title: 'Viral Score Predictor', desc: 'Analyze captions before posting with AI-driven tips to boost engagement.', color: '#ec4899' },
+  { icon: '👤', title: 'Profile Optimizer', desc: 'AI-powered bio suggestions and username ideas to attract more followers.', color: '#06b6d4' },
 ];
 
 export default function Landing() {
@@ -73,11 +73,24 @@ export default function Landing() {
             </div>
             <div>
               <div className="hero-stat-value">500K+</div>
-              <div className="hero-stat-label">Captions Generated</div>
+              <div className="hero-stat-label">Generated</div>
             </div>
             <div>
               <div className="hero-stat-value">4.9★</div>
-              <div className="hero-stat-label">User Rating</div>
+              <div className="hero-stat-label">Rating</div>
+            </div>
+          </div>
+        </div>
+        <div className="hero-image-container">
+          <div className="hero-image-wrapper">
+            <img src="/landing_hero_premium.png" alt="CreatorAI Studio Dashboard" className="hero-main-img" />
+            <div className="hero-floating-card card-1 animate-float">
+              <BarChart3 size={16} />
+              <span>Engagement +42%</span>
+            </div>
+            <div className="hero-floating-card card-2 animate-float-delayed">
+              <Zap size={16} />
+              <span>Viral Score 98</span>
             </div>
           </div>
         </div>

@@ -5,7 +5,7 @@ import {
   CategoryScale, LinearScale, BarElement, PointElement,
   LineElement, Title, Tooltip, Legend, Filler
 } from 'chart.js';
-import { Loader, ErrorMessage, Badge } from '../UI';
+import { Loader, ErrorMessage, Badge, Button } from '../UI';
 import api from '../../utils/api';
 import './Analytics.css';
 
@@ -48,19 +48,19 @@ export default function Analytics() {
   if (!data) return null;
 
   const engagementData = {
-    labels: data.weeklyEngagement.labels,
+    labels: data.weeklyEngagement?.labels || [],
     datasets: [
-      { label: 'Likes', data: data.weeklyEngagement.likes, backgroundColor: 'rgba(124, 58, 237, 0.7)', borderRadius: 6 },
-      { label: 'Comments', data: data.weeklyEngagement.comments, backgroundColor: 'rgba(236, 72, 153, 0.7)', borderRadius: 6 },
-      { label: 'Shares', data: data.weeklyEngagement.shares, backgroundColor: 'rgba(6, 182, 212, 0.7)', borderRadius: 6 },
+      { label: 'Likes', data: data.weeklyEngagement?.likes || [], backgroundColor: 'rgba(124, 58, 237, 0.7)', borderRadius: 6 },
+      { label: 'Comments', data: data.weeklyEngagement?.comments || [], backgroundColor: 'rgba(236, 72, 153, 0.7)', borderRadius: 6 },
+      { label: 'Shares', data: data.weeklyEngagement?.shares || [], backgroundColor: 'rgba(6, 182, 212, 0.7)', borderRadius: 6 },
     ]
   };
 
   const growthData = {
-    labels: data.followerGrowth.labels,
+    labels: data.followerGrowth?.labels || [],
     datasets: [{
       label: 'Followers',
-      data: data.followerGrowth.data,
+      data: data.followerGrowth?.data || [],
       borderColor: '#7c3aed',
       backgroundColor: 'rgba(124, 58, 237, 0.1)',
       fill: true,
@@ -70,13 +70,13 @@ export default function Analytics() {
     }]
   };
 
-  const o = data.overview;
+  const o = data.overview || {};
   const stats = [
-    { label: 'Total Followers', value: o.totalFollowers.toLocaleString(), change: `+${o.followersGrowth}` },
-    { label: 'Total Likes', value: o.totalLikes.toLocaleString(), change: `+${o.likesGrowth}%` },
-    { label: 'Total Comments', value: o.totalComments.toLocaleString(), change: `+${o.commentsGrowth}%` },
-    { label: 'Avg Reach', value: o.avgReach.toLocaleString(), change: `+${o.reachGrowth}%` },
-    { label: 'Engagement Rate', value: `${o.engagementRate}%`, change: `+${o.engagementGrowth}%` },
+    { label: 'Total Followers', value: (o.totalFollowers || 0).toLocaleString(), change: `+${o.followersGrowth || 0}` },
+    { label: 'Total Likes', value: (o.totalLikes || 0).toLocaleString(), change: `+${o.likesGrowth || 0}%` },
+    { label: 'Total Comments', value: (o.totalComments || 0).toLocaleString(), change: `+${o.commentsGrowth || 0}%` },
+    { label: 'Avg Reach', value: (o.avgReach || 0).toLocaleString(), change: `+${o.reachGrowth || 0}%` },
+    { label: 'Engagement Rate', value: `${o.engagementRate || 0}%`, change: `+${o.engagementGrowth || 0}%` },
   ];
 
   return (

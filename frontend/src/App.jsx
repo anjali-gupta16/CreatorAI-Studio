@@ -13,6 +13,8 @@ import Analytics from './components/Features/Analytics';
 import ProfileOptimizer from './components/Features/ProfileOptimizer';
 import SavedContent from './components/Features/SavedContent';
 import ImagePrompts from './components/Features/ImagePrompts';
+import ReelScriptGenerator from './components/Features/ReelScriptGenerator';
+import HashtagResearch from './components/Features/HashtagResearch';
 import Planner from './components/Features/Planner';
 import { Loader } from './components/UI';
 
@@ -43,6 +45,8 @@ function AppRoutes() {
         <Route path="analytics" element={<Analytics />} />
         <Route path="profile" element={<ProfileOptimizer />} />
         <Route path="image-prompts" element={<ImagePrompts />} />
+        <Route path="reel-scripts" element={<ReelScriptGenerator />} />
+        <Route path="hashtags" element={<HashtagResearch />} />
         <Route path="planner" element={<Planner />} />
         <Route path="saved" element={<SavedContent />} />
         <Route path="pricing" element={<Pricing />} />

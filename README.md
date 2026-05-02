@@ -1,97 +1,105 @@
-# CreatorAI Studio – Instagram Growth Platform
+# CreatorAI Studio – Premium Instagram Growth Platform
 
-> A premium AI-powered SaaS platform designed for Instagram creators to generate viral content, create stunning visuals, and analyze growth with data-driven insights.
+> A professional, AI-powered SaaS platform designed for Instagram creators to automate content creation, generate stunning visuals, and analyze growth with data-driven insights. Built for speed, aesthetic excellence, and high conversion.
 
-## 🚀 Features
+![App Screenshot](./landing_preview.png)
 
-- **Real AI Caption Generator** – Powered by **Llama 3.1 (NVIDIA NIM)** for high-conversion captions and optimized hashtags.
-- **AI Text-to-Image** – Generate high-quality 1024x1024 visuals instantly using **Stable Diffusion XL Turbo**.
-- **Content Ideas Engine** – Get niche-specific viral post and reel ideas tailored to your audience.
-- **Viral Score Predictor** – Real-time analysis of your captions with AI-driven improvement suggestions.
-- **Growth Analytics** – Professional-grade charts tracking engagement, follower growth, and content performance.
-- **Profile Optimizer** – Optimize your Instagram bio and username for maximum conversion.
-- **Production-Ready Auth** – Secure JWT authentication with a full user management system.
-- **Freemium Model** – Built-in rate limiting (5 free generations/day) with a Premium upgrade path.
+## 🚀 Key Features
+
+- **Pro AI Caption Generator** – Powered by **Llama 3.1 (NVIDIA NIM)** with emoji-rich, high-conversion captions and smart hashtag suggestions.
+- **Advanced AI Visuals** – Generate high-quality 1024x1024 visuals instantly using **Stable Diffusion XL Turbo** and **FLUX-1 Schnell**.
+- **AI Reel Script Generator** – Turn any topic into a professional 60-second script with scene descriptions and audio cues.
+- **Smart Hashtag Research** – Discover trending and niche-specific hashtags to explode your reach.
+- **Viral Score Predictor** – Real-time analysis of your content with AI-driven improvement suggestions.
+- **Social Media Planner** – Plan your content calendar and save your best AI-generated creations.
+- **Growth Analytics** – Professional-grade interactive charts tracking engagement, follower growth, and content performance.
+- **Profile Optimizer** – Audit and optimize your Instagram bio for maximum follower conversion.
+- **Premium Subscription Flow** – Integrated Stripe-ready payment flow with dynamic redirection and plan management.
 
 ## 🛠️ Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
 | **Frontend** | Vite + React 18 |
-| **Styling** | Vanilla CSS (Premium Design Tokens) |
+| **Styling** | Vanilla CSS (Premium Glassmorphism & Design Tokens) |
 | **Backend** | Node.js + Express |
-| **Database** | MongoDB (Production-grade persistence) |
-| **AI (Text)** | NVIDIA NIM (Meta Llama 3.1 8B Instruct) |
-| **AI (Image)** | NVIDIA NIM (Stability AI SDXL Turbo) |
-| **Auth** | JWT (JSON Web Tokens) |
+| **Database** | MongoDB (Mongoose ODM) |
+| **AI (Text)** | NVIDIA NIM (Meta Llama 3.1 8B / 70B Instruct) |
+| **AI (Image)** | NVIDIA NIM (Stability AI SDXL Turbo / BFL Flux Schnell) |
+| **Payments** | Stripe Integration (Ready for Production) |
 | **Charts** | Chart.js |
 
 ## 📋 Prerequisites
 
-- **Node.js** (v18+)
-- **MongoDB** (Local instance running on `27017`)
-- **NVIDIA NIM API Key** (Required for all AI features)
+- **Node.js** (v18 or higher)
+- **MongoDB** (Local instance or MongoDB Atlas)
+- **NVIDIA NIM API Key** (Get yours at build.nvidia.com)
+- **Stripe API Key** (Optional, for payment testing)
 
 ## ⚡ Quick Start
 
-### 1. Setup Backend
+### 1. Clone & Install
+```bash
+git clone https://github.com/anjali-gupta16/CreatorAI-Studio.git
+cd CreatorAI-Studio
+```
 
+### 2. Setup Backend
 ```bash
 cd backend
 npm install
-# Create .env based on the variables below
+# Create .env file (see template below)
 npm run dev
 ```
 
-### 2. Setup Frontend
-
+### 3. Setup Frontend
 ```bash
-cd frontend
+cd ../frontend
 npm install
 npm run dev
 ```
 
-### 3. Open in Browser
-
+### 4. Access the App
 - **Frontend:** `http://localhost:3000`
-- **API Health:** `http://localhost:5000/api/health`
+- **Backend API:** `http://localhost:5000`
 
-## 🔑 Environment Variables
-
-Create `backend/.env`:
+## 🔑 Environment Variables (`backend/.env`)
 
 ```env
+# Database
 MONGODB_URI=mongodb://localhost:27017/creatorai-studio
-JWT_SECRET=your-production-secret-key
-OPENAI_API_KEY=your-nvidia-nim-key
+
+# Security
+JWT_SECRET=your_secure_random_string
+
+# AI Configuration (NVIDIA NIM)
+OPENAI_API_KEY=your_nvidia_api_key
 AI_BASE_URL=https://integrate.api.nvidia.com/v1
-PORT=5000
+
+# Optional: Dedicated Image Key (Google/NVIDIA)
+IMAGE_API_KEY=your_dedicated_image_key
+
+# Stripe (Optional)
+STRIPE_SECRET_KEY=sk_test_...
+CLIENT_URL=http://localhost:3000
 ```
 
-## 📡 Key API Endpoints
+## 📡 Core API Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/auth/signup` | Register new production account |
-| POST | `/api/auth/login` | Secure login |
-| POST | `/api/generate-caption` | Real AI caption generation |
-| POST | `/api/generate-image` | AI visual generation (SDXL Turbo) |
-| POST | `/api/viral-score` | Predict engagement potential |
-| GET | `/api/analytics` | Fetch growth metrics & charts |
-| GET | `/api/saved` | Manage your AI-generated library |
+| POST | `/api/auth/signup` | Create a new creator account |
+| POST | `/api/generate-caption` | Generate emoji-rich captions |
+| POST | `/api/generate-image` | High-speed AI visual generation |
+| POST | `/api/generate-reel-script` | Professional video scripts |
+| POST | `/api/research-hashtags` | Trending hashtag analysis |
+| GET | `/api/analytics` | Real-time growth metrics |
 
-## 💡 Production Notes
+## 💡 Production Philosophy
 
-- **Real Data Only:** The "Demo Mode" has been decommissioned. A running MongoDB instance is mandatory.
-- **AI Performance:** By using NVIDIA NIM endpoints, text and image generation are optimized for low latency.
-- **Responsive Design:** The dashboard is optimized for Desktop, Tablet, and Mobile creators.
+- **Resilience:** Built-in AI model failover system. If one model is down, the system automatically tries alternatives.
+- **Performance:** Optimized for low-latency responses using NVIDIA's GPU-accelerated inference.
+- **UX First:** Designed with a "Premium-First" mindset, featuring smooth animations, dark mode, and intuitive workflows.
 
 ---
-*Developed with a focus on visual excellence and creator growth.*
-
-## 🚀 Deployment
-
-For a full production deployment, follow the **[Deployment Guide](./deployment_guide.md)** which covers:
-1. Setting up **MongoDB Atlas** for cloud data storage.
-2. Deploying the **Node.js API** to Railway or Render.
-3. Hosting the **React Frontend** on Vercel.
+*Built for the next generation of digital creators.*

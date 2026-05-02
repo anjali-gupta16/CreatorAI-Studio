@@ -1,7 +1,8 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard, PenLine, Lightbulb, TrendingUp,
-  BarChart3, UserCircle, CreditCard, Crown, Menu, X, Bookmark, ImageIcon, Calendar, Settings
+  BarChart3, UserCircle, CreditCard, Crown, Menu, X, Bookmark, ImageIcon, Calendar, Settings,
+  Video, Hash
 } from 'lucide-react';
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
@@ -16,6 +17,8 @@ const navItems = [
     { path: '/dashboard/captions', icon: PenLine, label: 'Caption Gen' },
     { path: '/dashboard/ideas', icon: Lightbulb, label: 'Content Ideas' },
     { path: '/dashboard/image-prompts', icon: ImageIcon, label: 'Image Prompts' },
+    { path: '/dashboard/reel-scripts', icon: Video, label: 'Reel Scripts' },
+    { path: '/dashboard/hashtags', icon: Hash, label: 'Hashtag Research' },
     { path: '/dashboard/viral-score', icon: TrendingUp, label: 'Viral Score' },
     { path: '/dashboard/analytics', icon: BarChart3, label: 'Analytics' },
     { path: '/dashboard/profile', icon: UserCircle, label: 'Profile Optimizer' },

@@ -1,0 +1,129 @@
+.hashtag-research-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.hashtag-input-card {
+  padding: var(--space-xl);
+}
+
+.hashtag-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.hashtag-result-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.strategy-card {
+  padding: var(--space-lg);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+.strategy-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+  color: var(--primary-color);
+}
+
+.strategy-header h3 {
+  font-size: var(--font-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.strategy-card p {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.hashtag-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+.hashtag-category-card {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.category-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--primary-color);
+}
+
+.category-title h4 {
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.copy-mini-btn {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 4px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.copy-mini-btn:hover {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.hashtag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.hashtag-pill {
+  padding: 4px 10px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  font-size: var(--font-xs);
+  color: var(--text-primary);
+  font-family: monospace;
+  transition: all 0.2s;
+}
+
+.hashtag-pill:hover {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.hashtag-actions {
+  margin-top: var(--space-lg);
+}
+
+@media (max-width: 640px) {
+  .hashtag-grid {
+    grid-template-columns: 1fr;
+  }
+}

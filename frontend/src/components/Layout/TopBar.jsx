@@ -11,6 +11,9 @@ const pageTitles = {
   '/dashboard/viral-score': 'Viral Score',
   '/dashboard/analytics': 'Analytics',
   '/dashboard/profile': 'Profile Optimizer',
+  '/dashboard/image-prompts': 'Image Prompts',
+  '/dashboard/reel-scripts': 'Reel Scripts',
+  '/dashboard/hashtags': 'Hashtag Research',
   '/dashboard/pricing': 'Pricing',
 };
 

@@ -34,7 +34,7 @@ export const api = {
   login: (data) => apiRequest('/auth/login', { method: 'POST', body: JSON.stringify(data) }),
   getMe: () => apiRequest('/auth/me'),
   upgrade: () => apiRequest('/auth/upgrade', { method: 'POST' }),
-  createStripeSession: () => apiRequest('/stripe/create-checkout-session', { method: 'POST' }),
+  createStripeSession: (data) => apiRequest('/stripe/create-checkout-session', { method: 'POST', body: JSON.stringify(data) }),
 
   // AI Features
   generateCaption: (data) => apiRequest('/generate-caption', { method: 'POST', body: JSON.stringify(data) }),
@@ -43,6 +43,8 @@ export const api = {
   getViralScore: (data) => apiRequest('/viral-score', { method: 'POST', body: JSON.stringify(data) }),
   optimizeProfile: (data) => apiRequest('/optimize-profile', { method: 'POST', body: JSON.stringify(data) }),
   generateImage: (data) => apiRequest('/generate-image', { method: 'POST', body: JSON.stringify(data) }),
+  generateReelScript: (data) => apiRequest('/generate-reel-script', { method: 'POST', body: JSON.stringify(data) }),
+  researchHashtags: (data) => apiRequest('/research-hashtags', { method: 'POST', body: JSON.stringify(data) }),
 
   // Analytics
   getAnalytics: () => apiRequest('/analytics'),

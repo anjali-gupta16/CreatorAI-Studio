@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { 
   Eye, Users, Heart, TrendingUp, PenLine, Lightbulb, BarChart3, UserCircle, 
-  ArrowUpRight, Bookmark, Clock, ArrowRight, Zap, ImageIcon, Calendar
+  ArrowUpRight, Bookmark, Clock, ArrowRight, Zap, ImageIcon, Calendar, Crown
 } from 'lucide-react';
 import api from '../utils/api';
 import './Dashboard.css';
@@ -72,8 +72,8 @@ export default function Dashboard() {
           <h2>Welcome back, {user?.name?.split(' ')[0] || 'Creator'} 👋</h2>
           <p>Here's your Instagram growth overview. Use AI tools to create viral content.</p>
         </div>
-        <Badge variant="orange" style={{ padding: '8px 12px', fontSize: '11px' }}>
-          <Zap size={12} fill="currentColor" /> DEMO MODE
+        <Badge variant={user?.plan === 'premium' ? 'primary' : 'orange'} style={{ padding: '8px 12px', fontSize: '11px', textTransform: 'uppercase' }}>
+          {user?.plan === 'premium' ? <Crown size={12} fill="currentColor" /> : <Zap size={12} fill="currentColor" />} {user?.plan || 'Free'} Plan
         </Badge>
       </div>
 
@@ -145,7 +145,7 @@ export default function Dashboard() {
         <div className="growth-insight">
           <h3 style={{ fontSize: 'var(--font-lg)', fontWeight: 700, marginBottom: '16px' }}>Growth Insight</h3>
           <Card gradient style={{ height: 'calc(100% - 40px)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', padding: '32px' }}>
-            <div style={{ width: '64px', height: '64px', background: 'rgba(124, 58, 237, 0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyCenter: 'center', color: 'var(--primary-400)', marginBottom: '16px' }}>
+            <div style={{ width: '64px', height: '64px', background: 'rgba(124, 58, 237, 0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary-400)', marginBottom: '16px' }}>
               <TrendingUp size={32} />
             </div>
             <h4 style={{ marginBottom: '8px' }}>Optimization Tip</h4>

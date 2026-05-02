@@ -8,7 +8,8 @@ dotenv.config();
 
 const { connectDB } = require('./config/db');
 const { 
-  generateCaption, generateIdeas, predictViralScore, optimizeProfile, generateImagePrompts, generateImage 
+  generateCaption, generateIdeas, predictViralScore, optimizeProfile, generateImagePrompts, generateImage,
+  generateReelScript, researchHashtags
 } = require('./services/aiService');
 const User = require('./models/User');
 const SavedContent = require('./models/SavedContent');
@@ -104,26 +105,38 @@ app.post('/api/auth/login', async (req, res) => {
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-app.post('/api/auth/upgrade', protect, (req, res) => {
-  const user = req.user;
-  user.plan = 'premium';
-  
-  if (!isDemoMode()) {
-    // In production, you would handle payment here
-    // user.save(); 
+app.post('/api/auth/upgrade', protect, async (req, res) => {
+  try {
+    console.log(`[UPGRADE] Attempting to upgrade user: ${req.user.email}`);
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      console.error('[UPGRADE] User not found in DB');
+      return res.status(404).json({ error: 'User not found' });
+    }
+    
+    user.plan = 'premium';
+    await user.save();
+    
+    console.log(`[UPGRADE] Successfully upgraded user: ${req.user.email}`);
+    res.json({ message: 'Upgraded to Premium', plan: 'premium' });
+  } catch (error) {
+    console.error('[UPGRADE] Error:', error);
+    res.status(500).json({ error: 'Upgrade failed' });
   }
-  
-  res.json({ message: 'Upgraded to Premium', plan: 'premium' });
 });
 
 app.post('/api/stripe/create-checkout-session', protect, async (req, res) => {
   try {
-    // Check if Stripe key is valid/configured
-    if (!process.env.STRIPE_SECRET_KEY || process.env.STRIPE_SECRET_KEY === 'sk_test_your_key_here') {
-      // In demo mode, return a success flag instead of a Stripe URL
+    const { origin } = req.body;
+    const clientUrl = origin || process.env.CLIENT_URL || 'http://localhost:5173';
+    
+    const isLocalDemo = !process.env.STRIPE_SECRET_KEY || process.env.STRIPE_SECRET_KEY === 'sk_test_your_key_here';
+    
+    if (isLocalDemo) {
+      // Return a simulated success URL for development/demo
       return res.json({ 
         id: 'demo_session', 
-        url: `${process.env.CLIENT_URL}/dashboard?payment=success&demo=true` 
+        url: `${clientUrl}/dashboard?payment=success&demo=true` 
       });
     }
 
@@ -145,8 +158,8 @@ app.post('/api/stripe/create-checkout-session', protect, async (req, res) => {
         },
       ],
       mode: 'payment',
-      success_url: `${process.env.CLIENT_URL}/dashboard?session_id={CHECKOUT_SESSION_ID}&payment=success`,
-      cancel_url: `${process.env.CLIENT_URL}/dashboard/pricing?payment=cancelled`,
+      success_url: `${clientUrl}/dashboard?session_id={CHECKOUT_SESSION_ID}&payment=success`,
+      cancel_url: `${clientUrl}/dashboard/pricing?payment=cancelled`,
       customer_email: req.user.email,
     });
 
@@ -262,7 +275,30 @@ app.post('/api/generate-image', protect, checkLimit, async (req, res) => {
     const result = await generateImage(prompt.trim());
     res.json({ ...result, generationsRemaining: req.generationsRemaining });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to generate image' });
+    console.error('[IMAGE_GEN] Error:', error.message);
+    res.status(500).json({ error: error.message || 'Failed to generate image' });
+  }
+});
+
+app.post('/api/generate-reel-script', protect, checkLimit, async (req, res) => {
+  try {
+    const { topic } = req.body;
+    if (!topic?.trim()) return res.status(400).json({ error: 'Topic is required' });
+    const result = await generateReelScript(topic.trim());
+    res.json({ ...result, generationsRemaining: req.generationsRemaining });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to generate reel script' });
+  }
+});
+
+app.post('/api/research-hashtags', protect, checkLimit, async (req, res) => {
+  try {
+    const { niche } = req.body;
+    if (!niche?.trim()) return res.status(400).json({ error: 'Niche is required' });
+    const result = await researchHashtags(niche.trim());
+    res.json({ ...result, generationsRemaining: req.generationsRemaining });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to research hashtags' });
   }
 });
 

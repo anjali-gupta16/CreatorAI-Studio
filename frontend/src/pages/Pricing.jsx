@@ -62,8 +62,8 @@ export default function Pricing() {
     e.preventDefault();
     setLoading(true);
     try {
-      // Create real Stripe checkout session
-      const data = await api.createStripeSession();
+      // Create real Stripe checkout session with dynamic origin
+      const data = await api.createStripeSession({ origin: window.location.origin });
       
       // Redirect to Stripe Checkout page
       if (data.url) {
