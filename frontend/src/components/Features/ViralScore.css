@@ -1,0 +1,128 @@
+/* Viral Score */
+.viral-container { animation: fadeInUp 0.4s ease-out; }
+.viral-result {
+  margin-top: 20px;
+  animation: fadeInUp 0.4s ease-out;
+}
+.score-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+.score-circle {
+  position: relative;
+  width: 160px;
+  height: 160px;
+}
+.score-circle svg {
+  transform: rotate(-90deg);
+  width: 160px;
+  height: 160px;
+}
+.score-circle-bg {
+  fill: none;
+  stroke: var(--slate-700);
+  stroke-width: 8;
+}
+.score-circle-progress {
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s ease-out;
+}
+.score-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.score-number {
+  font-size: var(--font-4xl);
+  font-weight: 900;
+  line-height: 1;
+}
+.score-label {
+  font-size: var(--font-xs);
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.breakdown-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+.breakdown-item {
+  background: var(--bg-input);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  text-align: center;
+}
+.breakdown-item-label {
+  font-size: var(--font-xs);
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.breakdown-item-value {
+  font-size: var(--font-xl);
+  font-weight: 700;
+}
+.breakdown-item-bar {
+  height: 4px;
+  background: var(--slate-700);
+  border-radius: 2px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+.breakdown-item-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1s ease-out;
+}
+
+.suggestions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+.suggestion-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.suggestion-icon {
+  color: var(--accent-orange);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.improved-caption {
+  margin-top: 20px;
+  padding: 16px;
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: var(--radius-md);
+}
+.improved-caption-title {
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--accent-green);
+  margin-bottom: 8px;
+}
+.improved-caption-text {
+  font-size: var(--font-sm);
+  line-height: 1.7;
+  white-space: pre-wrap;
+}

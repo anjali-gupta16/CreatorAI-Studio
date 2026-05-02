@@ -1,0 +1,104 @@
+/* Profile Optimizer */
+.profile-container { animation: fadeInUp 0.4s ease-out; }
+.profile-results { margin-top: 20px; }
+.bio-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 20px 0;
+}
+.bio-panel {
+  background: var(--bg-input);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+.bio-panel-title {
+  font-size: var(--font-xs);
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+.bio-panel-text {
+  font-size: var(--font-sm);
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.bio-suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 16px 0;
+}
+.bio-suggestion-card {
+  background: var(--bg-input);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  transition: all var(--transition-fast);
+}
+.bio-suggestion-card:hover {
+  border-color: rgba(124, 58, 237, 0.3);
+}
+.bio-suggestion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.bio-suggestion-label {
+  font-size: var(--font-xs);
+  font-weight: 600;
+  color: var(--primary-400);
+}
+.bio-suggestion-text {
+  font-size: var(--font-sm);
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.username-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+.username-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: var(--radius-full);
+  font-size: var(--font-sm);
+  font-weight: 500;
+  color: var(--accent-blue);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.username-chip:hover {
+  background: rgba(59, 130, 246, 0.2);
+}
+
+.tips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+.tip-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .bio-comparison { grid-template-columns: 1fr; }
+}

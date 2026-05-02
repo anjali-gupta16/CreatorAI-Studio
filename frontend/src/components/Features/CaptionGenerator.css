@@ -1,0 +1,33 @@
+/* Caption Generator */
+.caption-gen { animation: fadeInUp 0.4s ease-out; }
+.caption-gen-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.caption-output {
+  animation: fadeInUp 0.4s ease-out;
+}
+.caption-text {
+  font-size: var(--font-base);
+  line-height: 1.8;
+  white-space: pre-wrap;
+  padding: 20px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+}
+.hashtag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
+.caption-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}

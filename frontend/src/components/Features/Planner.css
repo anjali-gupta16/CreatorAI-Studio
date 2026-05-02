@@ -1,0 +1,81 @@
+/* Planner Styles */
+.planner-container {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.planner-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  margin-top: 24px;
+  min-height: 500px;
+}
+
+.planner-day {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+  overflow: hidden;
+}
+
+.planner-day.today {
+  border-color: var(--primary-400);
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.1);
+}
+
+.planner-day-header {
+  padding: 12px;
+  text-align: center;
+  background: rgba(148, 163, 184, 0.05);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.day-name {
+  font-size: var(--font-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.day-number {
+  font-size: var(--font-lg);
+  font-weight: 800;
+  margin-top: 2px;
+}
+
+.planner-slots {
+  flex: 1;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.planner-item {
+  padding: 8px 10px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: var(--font-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-left-width: 4px;
+}
+
+.planner-item:hover {
+  transform: translateX(2px);
+  border-color: var(--primary-400);
+}
+
+.planner-item.caption { border-left-color: var(--primary-400); }
+.planner-item.idea { border-left-color: var(--accent-orange); }
+.planner-item.image { border-left-color: var(--accent-cyan); }
+
+@media (max-width: 1024px) {
+  .planner-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+}

@@ -1,0 +1,105 @@
+/* Analytics */
+.analytics-container { animation: fadeInUp 0.4s ease-out; }
+.analytics-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.analytics-stat {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+}
+.analytics-stat-label {
+  font-size: var(--font-xs);
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.analytics-stat-value {
+  font-size: var(--font-2xl);
+  font-weight: 800;
+}
+.analytics-stat-change {
+  font-size: var(--font-xs);
+  font-weight: 600;
+  color: var(--accent-green);
+  margin-top: 2px;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
+  margin-bottom: 28px;
+}
+.chart-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+.chart-wrapper h3 {
+  font-size: var(--font-base);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+.insight-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  gap: 14px;
+  transition: all var(--transition-base);
+}
+.insight-card:hover {
+  border-color: rgba(124, 58, 237, 0.3);
+}
+.insight-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+.insight-title {
+  font-size: var(--font-sm);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.insight-desc {
+  font-size: var(--font-xs);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.top-content-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+.top-content-table th {
+  text-align: left;
+  padding: 10px 12px;
+  font-size: var(--font-xs);
+  color: var(--text-muted);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-light);
+}
+.top-content-table td {
+  padding: 12px;
+  font-size: var(--font-sm);
+  border-bottom: 1px solid var(--border-light);
+}
+.top-content-table tr:hover td {
+  background: rgba(148, 163, 184, 0.04);
+}
+
+@media (max-width: 768px) {
+  .charts-grid { grid-template-columns: 1fr; }
+}
