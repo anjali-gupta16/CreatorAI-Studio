@@ -15,7 +15,11 @@ openai = new OpenAI({
   baseURL: baseURL || undefined
 });
 
-const AI_MODEL = baseURL?.includes('nvidia') ? 'meta/llama-3.1-8b-instruct' : 'gpt-3.5-turbo';
+const AI_MODEL = baseURL?.includes('nvidia') 
+  ? 'meta/llama-3.1-8b-instruct' 
+  : baseURL?.includes('openrouter')
+    ? 'meta-llama/llama-3.1-8b-instruct'
+    : 'gpt-3.5-turbo';
 
 // ─── Helper: Clean and Parse AI JSON ───────────────────────────
 function parseAIResponse(content) {
