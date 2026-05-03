@@ -4,7 +4,6 @@ let isConnected = false;
 
 const connectDB = async () => {
   if (isConnected) {
-    console.log('✅ Using existing database connection');
     return;
   }
 
@@ -16,7 +15,7 @@ const connectDB = async () => {
     console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.error(`❌ MongoDB Connection Error: ${error.message}`);
-    // Do not exit process in serverless, let the request fail
+    throw error;
   }
 };
 

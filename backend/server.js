@@ -27,6 +27,17 @@ app.use((req, res, next) => {
   next();
 });
 
+// Serverless DB Connection Middleware
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    console.error('Database connection failed:', error.message);
+    res.status(500).json({ error: `Database connection failed: ${error.message}. Please check your MONGODB_URI and ensure MongoDB Atlas Network Access allows connections from anywhere (0.0.0.0/0).` });
+  }
+});
+
 const JWT_SECRET = process.env.JWT_SECRET || 'creatorai-studio-production-secret-2024';
 const FREE_DAILY_LIMIT = 5;
 
@@ -388,11 +399,9 @@ app.use((req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-// Connect to DB (Required for serverless environments where the script is imported, not run directly)
-connectDB();
-
 if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => {
+    connectDB(); // Only connect once at startup in development mode
     console.log(`\n🚀 CreatorAI Studio API running in DEVELOPMENT MODE on port ${PORT}`);
     console.log(`📡 Health check: http://localhost:${PORT}/api/health\n`);
   });
