@@ -12,7 +12,11 @@ if (!apiKey || apiKey === 'sk-your-openai-api-key-here') {
 
 openai = new OpenAI({ 
   apiKey,
-  baseURL: baseURL || undefined
+  baseURL: baseURL || undefined,
+  defaultHeaders: {
+    'HTTP-Referer': 'https://creator-ai-studio.vercel.app', // Required by OpenRouter
+    'X-Title': 'CreatorAI Studio'
+  }
 });
 
 const AI_MODEL = baseURL?.includes('nvidia') 
