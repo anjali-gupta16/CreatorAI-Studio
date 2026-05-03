@@ -18,6 +18,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Vercel `routePrefix` might strip the '/api' from the URL. 
+// This middleware ensures the URL always starts with '/api' so existing routes match.
+app.use((req, res, next) => {
+  if (!req.url.startsWith('/api')) {
+    req.url = '/api' + req.url;
+  }
+  next();
+});
+
 const JWT_SECRET = process.env.JWT_SECRET || 'creatorai-studio-production-secret-2024';
 const FREE_DAILY_LIMIT = 5;
 
@@ -362,23 +371,15 @@ app.delete('/api/saved/:id', protect, async (req, res) => {
   }
 });
 
-const path = require('path');
-
 // Health check
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', mode: 'production', timestamp: new Date().toISOString() });
+app.get(['/health', '/api/health'], (req, res) => {
+  res.json({ status: 'ok', mode: 'serverless', timestamp: new Date().toISOString() });
 });
 
-// Serve static files from the React frontend app
-const frontendPath = path.join(__dirname, '../frontend/dist');
-app.use(express.static(frontendPath));
-
-// API 404 handler
-app.use('/api', (req, res) => res.status(404).json({ error: 'Route not found' }));
-
-// After all other routes, send back index.html so React can handle the routing
-app.get('*', (req, res) => {
-  res.sendFile(path.join(frontendPath, 'index.html'));
+// API 404 handler for all unmatched routes
+app.use((req, res) => {
+  console.log(`[404] Route not found: ${req.method} ${req.url}`);
+  res.status(404).json({ error: 'Route not found', path: req.url });
 });
 
 // ═══════════════════════════════════════════════════════════════
