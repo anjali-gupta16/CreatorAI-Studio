@@ -112,7 +112,7 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY || 'sk_test_your_key_here');
 
 app.post('/api/auth/upgrade', protect, async (req, res) => {
   try {
