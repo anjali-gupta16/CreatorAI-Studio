@@ -8,7 +8,7 @@ const connectDB = async () => {
   }
 
   try {
-    const uri = process.env.MONGODB_URI || process.env.MONGODB_URL;
+    const uri = process.env.MONGODB_URI || process.env.MONGODB_URL || process.env.ATLAS_URL || process.env.ATLAS_URI;
     const conn = await mongoose.connect(uri, {
       serverSelectionTimeoutMS: 5000,
     });
