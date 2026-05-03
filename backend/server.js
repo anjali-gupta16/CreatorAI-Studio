@@ -211,7 +211,7 @@ app.post('/api/generate-caption', protect, checkLimit, async (req, res) => {
     const result = await generateCaption(topic.trim(), tone);
     res.json({ ...result, topic, tone, generationsRemaining: req.generationsRemaining });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to generate caption' });
+    res.status(500).json({ error: 'Failed to generate caption: ' + error.message });
   }
 });
 
