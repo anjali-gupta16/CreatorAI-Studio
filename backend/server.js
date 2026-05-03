@@ -387,12 +387,15 @@ app.get('*', (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-async function start() {
-  await connectDB();
+// Connect to DB (Required for serverless environments where the script is imported, not run directly)
+connectDB();
+
+if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => {
-    console.log(`\n🚀 CreatorAI Studio API running in PRODUCTION MODE on port ${PORT}`);
+    console.log(`\n🚀 CreatorAI Studio API running in DEVELOPMENT MODE on port ${PORT}`);
     console.log(`📡 Health check: http://localhost:${PORT}/api/health\n`);
   });
 }
 
-start();
+// Export the Express app for Vercel Serverless Functions
+module.exports = app;
