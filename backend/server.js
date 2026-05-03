@@ -91,7 +91,7 @@ app.post('/api/auth/signup', async (req, res) => {
     res.status(201).json({ _id: user._id, name: user.name, email: user.email, plan: user.plan, generationsToday: 0, token });
   } catch (error) {
     console.error('Signup error:', error);
-    res.status(500).json({ error: 'Server error' });
+    res.status(500).json({ error: 'Server error: ' + error.message });
   }
 });
 
